@@ -7,17 +7,10 @@ trigger:
 - master
 
 pool:
-  vmImage: 'ubuntu-latest'
+  name: 'Mobile'
 
 steps:
-- task: UseRubyVersion@0
+- task: CmdLine@2
   inputs:
-    versionSpec: '>= 2.5'
+    script: 'start /d "C:\testeAzure" cucumber'
 
-- script: |
-    gem install bundler
-    bundle install --retry=3 --jobs=4
-  displayName: 'bundle install'
-
-- script: cucumber
-  displayName: 'bundle exec cucumber'
